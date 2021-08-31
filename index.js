@@ -64,7 +64,7 @@ const addRow = (user) => {
     row.dataset.index = user.index
     
     let serialNumberField = document.createElement("td")
-    serialNumberField.innerHTML = currentIndex
+    serialNumberField.innerHTML = user.index
     row.appendChild(serialNumberField)
   
     requiredFields.forEach(field => {
