@@ -1,0 +1,35 @@
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form input, .btn{
+    width: 250px;
+    padding: 20px;
+    margin: 10px;
+    color: #000;
+}
+
+.btn{
+    background-color: rgb(61, 61, 212);
+    color: #fff;
+    font-size: 20px;
+    border: none;
+}
+
+.table{
+    display: block;
+    margin-top: 20px;
+}
+
+.actions {
+    min-width: max-content;
+}
+
+.text-field {
+    min-width: 370px;
+}
+
+th,td{
+    padding: 5px;
+}
