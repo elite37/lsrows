@@ -42,12 +42,9 @@
   const switchRowToEdit = (row) => {
     row.dataset.editing = true;
     let users = JSON.parse(storage.getItem('users'));
-    console.log('s users: ', users);
     let user = users.find(u => Number(u.index) === Number(row.dataset.index));
-    console.log('s user', user);
     dataHeaders.forEach(field => {
         let child = getDataField(row, field);
-        console.log(child, child.dataset.column);
         let childInput = document.createElement('input');
         childInput.value = user[child.dataset.column];
         child.innerHTML = '';
@@ -73,7 +70,6 @@
     let edit = document.createElement('button');
 
     edit.addEventListener('click', (e) => {
-        console.log('edit row: ', row);
         e.preventDefault();
         const editing = (row.dataset.editing === 'true');
         if (!editing) {
@@ -149,7 +145,6 @@
     table.appendChild(row);
     // why ?
     if (tableDiv) tableDiv.appendChild(table);
-    console.log('tdar', tableDiv);
     tableDiv.style.display = 'block';
   };
 
@@ -218,19 +213,15 @@
   };
 
   const addExistingUsers = (table, users, tableDiv) => {
-    console.log('tdau', tableDiv);
     users.forEach(user => {
       addRow(table, user, tableDiv);
     });
   };
 
   const initUsers = (table, tableDiv) => {
-    console.log('tdi', tableDiv);
     const users = JSON.parse(storage.getItem('users'));
-    console.log('users: ', users);
 
     if (!Array.isArray(users) || !users.length) {
-      console.log('nope, setting new');
       storage.setItem('users', JSON.stringify([]));
       setCurrentIndex(1);
     } else {
@@ -252,7 +243,6 @@
   table.appendChild(header);
   tableDiv.appendChild(table);
 
-  console.log('tdm', tableDiv);
   initUsers(table, tableDiv);
 
   submitButton.addEventListener('click', (e) => {

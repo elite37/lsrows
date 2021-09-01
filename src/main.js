@@ -1,8 +1,8 @@
 let tableDiv = document.querySelector(".table")
 
-import { submit } from './methods/submit'
-import { createHeader } from './methods/header/createHeader'
-import { initUsers } from './methods/users/initUsers'
+import { submit } from './utils/submit'
+import { createHeader } from './utils/header/createHeader'
+import { initUsers } from './utils/users/initUsers'
 
 let submitButton = document.querySelector(".btn")
 
@@ -12,7 +12,6 @@ const header = createHeader()
 table.appendChild(header)
 tableDiv.appendChild(table)
 
-console.log('tdm', tableDiv)
 initUsers(table, tableDiv)
 
 submitButton.addEventListener('click', (e) => {

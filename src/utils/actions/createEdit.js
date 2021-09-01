@@ -5,7 +5,6 @@ export const createEdit = (table, row) => {
   let edit = document.createElement('button')
 
   edit.addEventListener('click', (e) => {
-      console.log('edit row: ', row)
       e.preventDefault()
       const editing = (row.dataset.editing === 'true')
       if (!editing) {

@@ -17,6 +17,5 @@ export const addRow = (table, user, tableDiv) => {
   table.appendChild(row)
   // why ?
   if (tableDiv) tableDiv.appendChild(table)
-  console.log('tdar', tableDiv)
   tableDiv.style.display = 'block'
 }
