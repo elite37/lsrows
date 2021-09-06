@@ -1,5 +1,6 @@
 let tableDiv = document.querySelector(".table")
 
+import { reassignIndexes } from './utils/users/reassignIndexes'
 import { isNumber } from './utils/helpers/isNumber'
 import { submit } from './utils/submit'
 import { createHeader } from './utils/header/createHeader'
@@ -12,7 +13,9 @@ let searchField = document.querySelector("#searchField")
 let limitField = document.querySelector("#limitField")
 let submitButton = document.querySelector(".btn")
 
-let table = document.createElement("table")
+// declaring globally so i can access in any file via 'window'
+var table = document.createElement("table")
+window.table = table
 const header = createHeader()
 
 const startSearch = () => {
@@ -33,6 +36,10 @@ const startSearch = () => {
 
 reassignIndexesButton.addEventListener('click', (e) => {
   e.preventDefault()
+  let response = confirm('sure you want to reassign indexes?')
+  if (response) {
+    reassignIndexes()
+  }
 })
 
 limitField.addEventListener('input', (e) => {

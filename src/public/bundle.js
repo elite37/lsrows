@@ -1,3 +1,25 @@
+let storage = localStorage;
+
+const getUsers = () => {
+  return JSON.parse(storage.getItem('users'))
+};
+
+const reassignIndexes = () => {
+  let users = getUsers();
+  users.forEach((user, index) => {
+    let newIndex = index + 1;
+    console.log(newIndex);
+    let rows = Array.from(window.table.children);
+    let row = rows.find((row) => Number(row.dataset.index) === user.index);
+    if (row) {
+      row.childNodes[0].innerText = newIndex;
+      row.dataset.index = newIndex;
+    }
+    user.index = newIndex;
+  });
+  storage.setItem('users', JSON.stringify(users));
+};
+
 const isNumber = (value) => {
   let parsed = Number(value);
   if (!isNaN(parsed)) {
@@ -6,8 +28,6 @@ const isNumber = (value) => {
     return false
   }
 };
-
-let storage = localStorage;
 
 const dataHeaders = [
   'First Name',
@@ -110,7 +130,10 @@ const createDelete = (table, row) => {
 
   del.addEventListener("click", (e) => {
     e.preventDefault();
-    removeUser(table, row);
+    let response = confirm('sure you want to delete this row?');
+    if (response) {
+      removeUser(table, row);
+    }
   });
 
   del.innerText = 'Delete';
@@ -306,7 +329,9 @@ let searchField = document.querySelector("#searchField");
 let limitField = document.querySelector("#limitField");
 let submitButton = document.querySelector(".btn");
 
-let table = document.createElement("table");
+// declaring globally so i can access in any file via 'window'
+var table = document.createElement("table");
+window.table = table;
 const header = createHeader();
 
 const startSearch = () => {
@@ -327,6 +352,10 @@ const startSearch = () => {
 
 reassignIndexesButton.addEventListener('click', (e) => {
   e.preventDefault();
+  let response = confirm('sure you want to reassign indexes?');
+  if (response) {
+    reassignIndexes();
+  }
 });
 
 limitField.addEventListener('input', (e) => {

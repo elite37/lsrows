@@ -6,7 +6,10 @@ export const createDelete = (table, row) => {
 
   del.addEventListener("click", (e) => {
     e.preventDefault()
-    removeUser(table, row)
+    let response = confirm('sure you want to delete this row?')
+    if (response) {
+      removeUser(table, row)
+    }
   })
 
   del.innerText = 'Delete'
