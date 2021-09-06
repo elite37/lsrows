@@ -1,5 +1,5 @@
 import { switchRowToEdit } from '../rows/switchRowToEdit'
-import { updateRow } from '../rows/updateRow'
+import { updateUser } from '../rows/updateUser'
 
 export const createEdit = (table, row) => {
   let edit = document.createElement('button')
@@ -12,7 +12,7 @@ export const createEdit = (table, row) => {
           switchRowToEdit(row)
       } else {
           edit.innerText = 'Edit'
-          updateRow(row)
+          updateUser(row)
       }
   })
 

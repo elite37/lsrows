@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "rollup src/main.js --file src/public/bundle.js -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,12 @@
   "homepage": "https://github.com/elite37/lsrows#readme",
   "devDependencies": {
     "eslint": "^7.32.0"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "fuzzball": "^2.0.2",
+    "polka": "^0.5.2",
+    "serve-handler": "^6.1.3",
+    "sirv": "^1.0.17"
   }
 }

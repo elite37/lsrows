@@ -15,7 +15,8 @@ export const addRow = (table, user, tableDiv) => {
   row.appendChild(actions)
 
   table.appendChild(row)
+  
   // why ?
-  if (tableDiv) tableDiv.appendChild(table)
+  tableDiv.appendChild(table)
   tableDiv.style.display = 'block'
 }
