@@ -5,7 +5,6 @@ export const reassignIndexes = () => {
   let users = getUsers()
   users.forEach((user, index) => {
     let newIndex = index + 1
-    console.log(newIndex)
     let rows = Array.from(window.table.children)
     let row = rows.find((row) => Number(row.dataset.index) === user.index)
     if (row) {

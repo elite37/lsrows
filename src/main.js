@@ -6,6 +6,7 @@ import { submit } from './utils/submit'
 import { createHeader } from './utils/header/createHeader'
 import { initUsers } from './utils/users/initUsers'
 import { search } from './utils/users/search'
+import { enter } from './utils/enter'
 
 let reassignIndexesButton = document.querySelector('#reassignIndexesButton')
 let limitWarning = document.querySelector('#limitWarning')
@@ -17,6 +18,12 @@ let submitButton = document.querySelector(".btn")
 var table = document.createElement("table")
 window.table = table
 const header = createHeader()
+
+window.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    enter(table, tableDiv)
+  }
+})
 
 const startSearch = () => {
   let limit = limitField.value

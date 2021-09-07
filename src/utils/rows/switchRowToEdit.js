@@ -9,6 +9,8 @@ export const switchRowToEdit = (row) => {
   dataHeaders.forEach(field => {
       let child = getDataField(row, field)
       let childInput = document.createElement('input')
+      childInput.dataset.column = field
+      childInput.dataset.index = row.dataset.index
       childInput.value = user[child.dataset.column]
       child.innerHTML = ''
       child.appendChild(childInput)

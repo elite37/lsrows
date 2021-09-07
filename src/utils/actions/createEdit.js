@@ -1,5 +1,5 @@
 import { switchRowToEdit } from '../rows/switchRowToEdit'
-import { updateUser } from '../rows/updateUser'
+import { updateUser } from '../users/updateUser'
 
 export const createEdit = (table, row) => {
   let edit = document.createElement('button')

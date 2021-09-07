@@ -8,7 +8,6 @@ const reassignIndexes = () => {
   let users = getUsers();
   users.forEach((user, index) => {
     let newIndex = index + 1;
-    console.log(newIndex);
     let rows = Array.from(window.table.children);
     let row = rows.find((row) => Number(row.dataset.index) === user.index);
     if (row) {
@@ -70,6 +69,8 @@ const switchRowToEdit = (row) => {
   dataHeaders.forEach(field => {
       let child = getDataField(row, field);
       let childInput = document.createElement('input');
+      childInput.dataset.column = field;
+      childInput.dataset.index = row.dataset.index;
       childInput.value = user[child.dataset.column];
       child.innerHTML = '';
       child.appendChild(childInput);
@@ -82,8 +83,8 @@ const updateUser = (row) => {
         user = users.find(u => String(u.index) === row.dataset.index);
     
     dataHeaders.forEach(field => {
-        const child = getDataField(row, field),
-            {column} = child.dataset;
+        const child = getDataField(row, field);
+        const {column} = child.dataset;
         user[column] = child.childNodes[0].value;
         child.innerHTML = user[column];
     });
@@ -297,12 +298,10 @@ const userFuzz = (query) => {
     });
     let score = scores.reduce((a, b) => Math.max(a, b));
     user.score = score;
-    console.log(user['First Name'], user.score);
   });
 };
 
 const search = (table, tableDiv, query, limit) => {
-  console.log('searching');
   userFuzz(query);
   users.sort((u1, u2) => u2.score - u1.score);
   users.filter((u) => u.score > 70);
@@ -321,6 +320,17 @@ const search = (table, tableDiv, query, limit) => {
   });
 };
 
+const enter = (table, tableDiv) => {
+  const children = Array.from(table.children);
+  const focusedElement = document.activeElement;
+  if (focusedElement.dataset.column) {
+    const row = children.find((child) => child.dataset.index === focusedElement.dataset.index);
+    updateUser(row);
+  } else if(focusedElement.id === 'main-submit-button') {
+    submit(table, tableDiv);
+  }
+};
+
 let tableDiv = document.querySelector(".table");
 
 let reassignIndexesButton = document.querySelector('#reassignIndexesButton');
@@ -333,6 +343,12 @@ let submitButton = document.querySelector(".btn");
 var table = document.createElement("table");
 window.table = table;
 const header = createHeader();
+
+window.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    enter(table, tableDiv);
+  }
+});
 
 const startSearch = () => {
   let limit = limitField.value;

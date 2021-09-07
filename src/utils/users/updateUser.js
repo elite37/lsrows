@@ -8,8 +8,8 @@ export const updateUser = (row) => {
         user = users.find(u => String(u.index) === row.dataset.index);
     
     dataHeaders.forEach(field => {
-        const child = getDataField(row, field),
-            {column} = child.dataset;
+        const child = getDataField(row, field)
+        const {column} = child.dataset;
         user[column] = child.childNodes[0].value
         child.innerHTML = user[column]
     });

@@ -18,12 +18,10 @@ const userFuzz = (query) => {
     })
     let score = scores.reduce((a, b) => Math.max(a, b))
     user.score = score
-    console.log(user['First Name'], user.score)
   });
 }
 
 export const search = (table, tableDiv, query, limit) => {
-  console.log('searching')
   userFuzz(query)
   users.sort((u1, u2) => u2.score - u1.score)
   users.filter((u) => u.score > 70)
